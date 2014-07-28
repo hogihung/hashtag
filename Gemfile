@@ -11,6 +11,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'sqlite3'
 gem 'high_voltage'
+gem 'twitter'
 
 group :development do
   gem 'spring'
@@ -32,6 +33,7 @@ group :development, :test do
 
   gem 'spring-commands-rspec'
   gem 'simplecov'
+  gem 'dotenv-rails'
 end
 
 group :test do

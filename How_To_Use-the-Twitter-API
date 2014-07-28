@@ -1,0 +1,51 @@
+#Sample of using the Twitter API
+(This guide was written when Twitter Gem version 5.11.x)
+
+If you don't have your Twitter API keys/tokens, visit:
+https://dev.twitter.com/ and follow the process for requesting.
+(Alt url: https://apps.twitter.com/)
+
+
+The Twitter Gem:
+https://github.com/sferik/twitter
+
+
+I've added the dotenv gem to my Gemfile so I can use ENV['xxxxx'] as indicated
+below.  Or you can just pass your Twitter credentials.  But I think the dotenv
+way is a better solution.  (NOTE: be sure to put .env in your .gitignore file)
+
+
+Test your access:
+1.  Go to your rails console and enter the following:
+
+client = Twitter::REST::Client.new do |config|
+  config.consumer_key        = ENV['TWITTER_CONSUMER_KEY']
+  config.consumer_secret     = ENV['TWITTER_CONSUMER_SECRET']
+  config.access_token        = ENV['TWITTER_ACCESS_TOKEN']
+  config.access_token_secret = ENV['TWITTER_ACCESS_TOKEN_SECRET']
+end
+
+
+Example:
+1] pry(main)> client = Twitter::REST::Client.new do |config|
+[1] pry(main)*   config.consumer_key        = ENV['TWITTER_CONSUMER_KEY']
+[1] pry(main)*   config.consumer_secret     = ENV['TWITTER_CONSUMER_SECRET']
+[1] pry(main)*   config.access_token        = ENV['TWITTER_ACCESS_TOKEN']
+[1] pry(main)*   config.access_token_secret = ENV['TWITTER_ACCESS_TOKEN_SECRET']
+[1] pry(main)* end
+=> #<Twitter::REST::Client:0x007fee95cb1fc0
+ @access_token="*****************",
+ @access_token_secret="*****************",
+ @consumer_key="*****************",
+ @consumer_secret="*****************">
+[2] pry(main)>
+
+Note: I 'starred' out my actual settings, but you should be able to confirm that
+      your settings are good.  If you see nil for any of the values, then there
+      was an issue - perhaps a typo.
+
+Try some queries:
+client.friends
+
+client.search("some search term here")
+
